@@ -1,0 +1,225 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linux echo | xdsun777</title>
+<link rel="shortcut icon" href="https://xdsun777.github.io/favicon.ico?v=1653538368035">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xdsun777.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Linux echo | xdsun777 - Atom Feed" href="https://xdsun777.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="echo指令用于在Unix Like类的系统中输出指定的字符，可以通过特定的方式给输出的字符定义颜色及背景颜色。 默认情况下echo会输出灰色（白色）字符，背景为黑色。
+echo -e &quot;\033[x;y;zm...\033[0m..." />
+    <meta name="keywords" content="Linux" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xdsun777.github.io">
+  <img class="avatar" src="https://xdsun777.github.io/images/avatar.png?v=1653538368035" alt="">
+  </a>
+  <h1 class="site-title">
+    xdsun777
+  </h1>
+  <p class="site-description">
+    技术笔记
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Linux echo
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-05-25
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://xdsun777.github.io/tag/k7YV0oD5N/" class="post-tag">
+                  # Linux
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>echo指令用于在Unix Like类的系统中输出指定的字符，可以通过特定的方式给输出的字符定义颜色及背景颜色。 默认情况下echo会输出灰色（白色）字符，背景为黑色。</p>
+<pre><code>echo -e &quot;\033[x;y;zm...\033[0m&quot;
+x代表字符格式（0-7）
+0：最普通的，默认
+1：加高亮
+2：加深
+3：斜体
+4：下划线
+5：闪烁
+6：闪烁
+7：颜色反转
+
+y代表字符颜色
+</code></pre>
+<ol>
+<li>给输出的字符指定颜色<br>
+借助echo的-e选项来实现，语法格式为：</li>
+</ol>
+<p><code>echo -e &quot;\033[3xmsome things you want to print out.\033[0m&quot;</code></p>
+<p><code>\033[3xm</code>为ANSI控制码，表示要开始输出有颜色的字符了。<br>
+some things you want to print out.表示要输出的字符，和<code>3xm</code>紧挨着，如果中间有空格，输出的字符前面也会有空格。<br>
+3x为表示颜色的一组数字，x取值为0到7，分别代表的颜色如下：</p>
+<pre><code>30表示黑色。
+31表示红色。
+32表示绿色。
+33表示黄色。
+34表示蓝色。
+35表示紫色。
+36表示浅蓝色。
+37表示灰色。
+033[0m为ANSI控制码，表示结束输出有颜色的字符。
+</code></pre>
+<ol start="2">
+<li>给输出的字符指定背景颜色<br>
+同样借助echo的-e选项来实现，语法格式为：</li>
+</ol>
+<p><code>echo -e &quot;\033[4xsome things you want to print out.\033[0m&quot;</code></p>
+<p><code>\033</code>开头的都为ANSI控制码，和指定字符的颜色不同的是，这里用的是<code>4x</code>，常用的背景颜色也共8种，x取值为0到7。常用背景色如下：</p>
+<pre><code>40表示背景为黑色。
+41表示背景为红色。
+42表示背景为绿色。
+43表示背景为黄色。
+44表示背景为蓝色。
+45表示背景为紫色。
+46表示背景为浅蓝色。
+47表示背景为灰白色。
+</code></pre>
+<ol start="3">
+<li>其它常用的ANSI控制码</li>
+</ol>
+<pre><code>\033[1m让输出的字符高亮显式
+\033[3m输出斜体字
+\033[4m给输出的字符加上下划线
+\033[5m让输出的字符闪烁显式
+\033[7m设置反显效果，即把背景色和字体颜色反过来显示
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xdsun777.github.io/post/deepin-linux-bian-yi-php74/">
+              <h3 class="post-title">
+                Deepin Linux编译php7.4
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  <a/ target="_blank" href="https://github.com/xdsun777">github</a>
+  <a class="rss" href="https://xdsun777.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

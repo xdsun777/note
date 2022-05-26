@@ -1,0 +1,230 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deepin Linux编译php7.4 | xdsun777</title>
+<link rel="shortcut icon" href="https://xdsun777.github.io/favicon.ico?v=1653538368035">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xdsun777.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Deepin Linux编译php7.4 | xdsun777 - Atom Feed" href="https://xdsun777.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1.安装依赖
+sudo apt instaall autoconf automake libtool re2c build-essential libxml2 libxml2-dev
+
+2.准备php源码
+curl https://www...." />
+    <meta name="keywords" content="php,make,Linux" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xdsun777.github.io">
+  <img class="avatar" src="https://xdsun777.github.io/images/avatar.png?v=1653538368035" alt="">
+  </a>
+  <h1 class="site-title">
+    xdsun777
+  </h1>
+  <p class="site-description">
+    技术笔记
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Deepin Linux编译php7.4
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-05-25
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://xdsun777.github.io/tag/U3d3BkwoM/" class="post-tag">
+                  # php
+                </a>
+              
+                <a href="https://xdsun777.github.io/tag/v3r3B1RqH/" class="post-tag">
+                  # make
+                </a>
+              
+                <a href="https://xdsun777.github.io/tag/k7YV0oD5N/" class="post-tag">
+                  # Linux
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="1安装依赖">1.安装依赖</h2>
+<pre><code class="language-shell">sudo apt instaall autoconf automake libtool re2c build-essential libxml2 libxml2-dev
+</code></pre>
+<h2 id="2准备php源码">2.准备php源码</h2>
+<pre><code class="language-shell">curl https://www.php.net/distributions/php-7.4.29.tar.gz -o php-7.4.29.tar.gz
+
+tar -zxvf ./php-7.4.29.tar.gz # 解压
+</code></pre>
+<h2 id="3配置">3.配置</h2>
+<pre><code class="language-shell">cd php-7.4.29
+
+./configure --prefix=$HOME/Applib/php74 --extension-dir=PREFIX/extension --include-dir=PREFIX/include --man-dir=PREFIX/man --ini-path=PREFIX --enable-bcmath --with-bz2 --enable-calendar --with-curl --enable-exif --with-ffi --enable-ftp --enable-gd --with-external-gd --with-webp --with-jpeg --with-xpm --with-freetype --enable-gd-jis-conv --with-gettext --with-gmp --with-iconv --enable-intl --with-libxml --with-mysqli --with-pdo-mysql --with-pdo-sqlite --enable-sockets --with-expat --with-xmlrpc --with-xsl --with-zip --with-zlib --with-openssl --enable-fpm --without-sqlite3
+</code></pre>
+<p>需要注意的是<code>--prefix</code>参数，为安装位置，我将php安装在自定义的目录，后续需要配置环境变量，<br>
+在 <code>unix shell</code> 的配置文件（<code>bash</code>为<code>~/.bashrc</code>或者<code>zsh</code>为<code>~/.zshrc</code>）中添加以下内容</p>
+<pre><code class="language-shell">if [ -d &quot;php的安装路径即--prefix参数的值/bin&quot; ]; then
+	PATH=$HOME/Applib/php74/bin:$PATH;
+fi
+</code></pre>
+<h2 id="4编译">4.编译</h2>
+<pre><code class="language-shell">make -j4
+</code></pre>
+<h2 id="5安装php">5.安装php</h2>
+<pre><code class="language-shell">make install
+</code></pre>
+<h2 id="6编译安装扩展">6.编译安装扩展</h2>
+<p>一些很奇怪的原因哈，可能是我的问题，编译php的同时并没有编译php扩展，因此还需手动编译，为此写了个简单的shell脚本</p>
+<pre><code class="language-shell">#!/bin/bash
+
+root=你的php源码位置/ext/
+libs=`ls $root`
+for i in $libs
+do 
+    cd $root/$i &amp;&amp; phpize &amp;&amp; ./configure &amp;&amp; make -j4 &amp;&amp; make install
+done
+</code></pre>
+<p><code>$root</code>为php扩展的源码目录<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="red"><mrow><mi mathvariant="normal">注</mi><mi mathvariant="normal">意</mi><mi mathvariant="normal">：</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">\color{red}{注意：}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord" style="color:red;"><span class="mord cjk_fallback" style="color:red;">注</span><span class="mord cjk_fallback" style="color:red;">意</span><span class="mord cjk_fallback" style="color:red;">：</span></span></span></span></span>需要进行到第5步后再使用否则无效</p>
+<h2 id="检验">检验</h2>
+<pre><code class="language-shell"># 显示php版本
+php -v 
+# 显示已开启的php扩展功能
+php -m
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://xdsun777.github.io/post-images/1653480529311.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://xdsun777.github.io/post-images/1653480619216.png" alt="" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96">1.安装依赖</a></li>
+<li><a href="#2%E5%87%86%E5%A4%87php%E6%BA%90%E7%A0%81">2.准备php源码</a></li>
+<li><a href="#3%E9%85%8D%E7%BD%AE">3.配置</a></li>
+<li><a href="#4%E7%BC%96%E8%AF%91">4.编译</a></li>
+<li><a href="#5%E5%AE%89%E8%A3%85php">5.安装php</a></li>
+<li><a href="#6%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95">6.编译安装扩展</a></li>
+<li><a href="#%E6%A3%80%E9%AA%8C">检验</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  <a/ target="_blank" href="https://github.com/xdsun777">github</a>
+  <a class="rss" href="https://xdsun777.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
