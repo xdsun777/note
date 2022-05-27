@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://xdsun777.github.io/note</id>
+    <id>https://xdsun777.github.io/note/</id>
     <title>xdsun777</title>
-    <updated>2022-05-27T05:54:31.410Z</updated>
+    <updated>2022-05-27T05:55:15.115Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://xdsun777.github.io/note"/>
+    <link rel="alternate" href="https://xdsun777.github.io/note/"/>
     <link rel="self" href="https://xdsun777.github.io/note/atom.xml"/>
     <subtitle>技术笔记</subtitle>
     <logo>https://xdsun777.github.io/note/images/avatar.png</logo>
