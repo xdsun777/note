@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Deepin Linux显卡切换 | xdsun777</title>
-<link rel="shortcut icon" href="https://xdsun777.github.io/note/favicon.ico?v=1653631068619">
+<title>Deepin Linux显卡设置 | xdsun777</title>
+<link rel="shortcut icon" href="https://xdsun777.github.io/note/favicon.ico?v=1653815790897">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://xdsun777.github.io/note/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Deepin Linux显卡切换 | xdsun777 - Atom Feed" href="https://xdsun777.github.io/note/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Deepin Linux显卡设置 | xdsun777 - Atom Feed" href="https://xdsun777.github.io/note/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -15,7 +15,7 @@
 1.安装nvidia闭源驱动（一般在安装系统时，提供了选择）
 #安装nvidia闭源驱动
 sudo apt-get install -y ..." />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="Linux" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -24,7 +24,7 @@ sudo apt-get install -y ..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://xdsun777.github.io/note">
-  <img class="avatar" src="https://xdsun777.github.io/note/images/avatar.png?v=1653631068619" alt="">
+  <img class="avatar" src="https://xdsun777.github.io/note/images/avatar.png?v=1653815790897" alt="">
   </a>
   <h1 class="site-title">
     xdsun777
@@ -77,15 +77,19 @@ sudo apt-get install -y ..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Deepin Linux显卡切换
+              Deepin Linux显卡设置
             </h2>
             <div class="post-info">
               <span>
                 2022-05-25
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://xdsun777.github.io/note/tag/k7YV0oD5N/" class="post-tag">
+                  # Linux
+                </a>
               
             </div>
             
@@ -127,6 +131,12 @@ intel_gpu_time cmd # 显示cpu和gpu运行程序时的使用信息
 <img src="https://xdsun777.github.io/note/post-images/1653532405070.png" alt="intel_gpu_frequency" loading="lazy"></p>
 <p>intel_gpu_time：<br>
 <img src="https://xdsun777.github.io/note/post-images/1653532793128.png" alt="intel_gpu_time" loading="lazy"></p>
+<h2 id="4切换intel核显与nvidia独显">4.切换intel核显与nvidia独显</h2>
+<h3 id="安装任务栏显卡驱动切换插件">安装任务栏显卡驱动切换插件</h3>
+<pre><code class="language-shell">wget -t 3 -T 15 https://github.com/zty199/dde-dock-switch_graphics_card/releases/download/v1.8.4-1/dde-dock-graphics-plugin_1.8.4-1_amd64.deb
+sudo apt-get install -y ./dde-dock-graphics-plugin_1.8.4-1_amd64.deb
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://xdsun777.github.io/note/post-images/1653650680764.png" alt="" loading="lazy"></figure>
 
               </div>
               <div class="toc-container">
@@ -136,6 +146,11 @@ intel_gpu_time cmd # 显示cpu和gpu运行程序时的使用信息
 <li><a href="#1%E5%AE%89%E8%A3%85nvidia%E9%97%AD%E6%BA%90%E9%A9%B1%E5%8A%A8%E4%B8%80%E8%88%AC%E5%9C%A8%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E6%97%B6%E6%8F%90%E4%BE%9B%E4%BA%86%E9%80%89%E6%8B%A9">1.安装nvidia闭源驱动（一般在安装系统时，提供了选择）</a></li>
 <li><a href="#2nvidia%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7">2.nvidia相关工具</a></li>
 <li><a href="#3intel%E9%9B%86%E6%88%90%E6%98%BE%E5%8D%A1%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7">3.intel集成显卡监控工具</a></li>
+<li><a href="#4%E5%88%87%E6%8D%A2intel%E6%A0%B8%E6%98%BE%E4%B8%8Envidia%E7%8B%AC%E6%98%BE">4.切换intel核显与nvidia独显</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85%E4%BB%BB%E5%8A%A1%E6%A0%8F%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E5%88%87%E6%8D%A2%E6%8F%92%E4%BB%B6">安装任务栏显卡驱动切换插件</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

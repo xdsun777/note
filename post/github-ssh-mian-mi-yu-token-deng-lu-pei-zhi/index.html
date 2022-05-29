@@ -2,18 +2,18 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Linux echo | xdsun777</title>
+<title>github ssh免密与token登录配置 | xdsun777</title>
 <link rel="shortcut icon" href="https://xdsun777.github.io/note/favicon.ico?v=1653815790897">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://xdsun777.github.io/note/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Linux echo | xdsun777 - Atom Feed" href="https://xdsun777.github.io/note/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="github ssh免密与token登录配置 | xdsun777 - Atom Feed" href="https://xdsun777.github.io/note/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="echo指令用于在Unix Like类的系统中输出指定的字符，可以通过特定的方式给输出的字符定义颜色及背景颜色。 默认情况下echo会输出灰色（白色）字符，背景为黑色。
-echo -e &quot;\033[x;y;zm...\033[0m..." />
-    <meta name="keywords" content="Linux" />
+    <meta name="description" content="今天git push突然报错，可能是密钥过期了吧，于是重新配置了一下
+remote: Support for password authentication was removed on August 13, 2021. Please us..." />
+    <meta name="keywords" content="git" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -75,84 +75,46 @@ echo -e &quot;\033[x;y;zm...\033[0m..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Linux echo
+              github ssh免密与token登录配置
             </h2>
             <div class="post-info">
               <span>
-                2022-05-25
+                2022-05-29
               </span>
               <span>
-                3 min read
+                1 min read
               </span>
               
-                <a href="https://xdsun777.github.io/note/tag/k7YV0oD5N/" class="post-tag">
-                  # Linux
+                <a href="https://xdsun777.github.io/note/tag/pAK0tM4Gd/" class="post-tag">
+                  # git
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>echo指令用于在Unix Like类的系统中输出指定的字符，可以通过特定的方式给输出的字符定义颜色及背景颜色。 默认情况下echo会输出灰色（白色）字符，背景为黑色。</p>
-<pre><code>echo -e &quot;\033[x;y;zm...\033[0m&quot;
-x代表字符格式（0-7）
-0：最普通的，默认
-1：加高亮
-2：加深
-3：斜体
-4：下划线
-5：闪烁
-6：闪烁
-7：颜色反转
+                <p>今天<code>git push</code>突然报错，可能是密钥过期了吧，于是重新配置了一下</p>
+<pre><code>remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/CharmGo/sun.git/'
+</code></pre>
+<h2 id="生成密钥">生成密钥</h2>
+<pre><code class="language-shell">ssh-keygen -t rsa -b 4096 -C &quot;charmgo@qq.com&quot;
 
-y代表字符颜色
+cat ~/.ssh/生成的密钥.pub
 </code></pre>
-<ol>
-<li>给输出的字符指定颜色<br>
-借助echo的-e选项来实现，语法格式为：</li>
-</ol>
-<p><code>echo -e &quot;\033[3xmsome things you want to print out.\033[0m&quot;</code></p>
-<p><code>\033[3xm</code>为ANSI控制码，表示要开始输出有颜色的字符了。<br>
-some things you want to print out.表示要输出的字符，和<code>3xm</code>紧挨着，如果中间有空格，输出的字符前面也会有空格。<br>
-3x为表示颜色的一组数字，x取值为0到7，分别代表的颜色如下：</p>
-<pre><code>30表示黑色。
-31表示红色。
-32表示绿色。
-33表示黄色。
-34表示蓝色。
-35表示紫色。
-36表示浅蓝色。
-37表示灰色。
-033[0m为ANSI控制码，表示结束输出有颜色的字符。
-</code></pre>
-<ol start="2">
-<li>给输出的字符指定背景颜色<br>
-同样借助echo的-e选项来实现，语法格式为：</li>
-</ol>
-<p><code>echo -e &quot;\033[4xsome things you want to print out.\033[0m&quot;</code></p>
-<p><code>\033</code>开头的都为ANSI控制码，和指定字符的颜色不同的是，这里用的是<code>4x</code>，常用的背景颜色也共8种，x取值为0到7。常用背景色如下：</p>
-<pre><code>40表示背景为黑色。
-41表示背景为红色。
-42表示背景为绿色。
-43表示背景为黄色。
-44表示背景为蓝色。
-45表示背景为紫色。
-46表示背景为浅蓝色。
-47表示背景为灰白色。
-</code></pre>
-<ol start="3">
-<li>其它常用的ANSI控制码</li>
-</ol>
-<pre><code>\033[1m让输出的字符高亮显式
-\033[3m输出斜体字
-\033[4m给输出的字符加上下划线
-\033[5m让输出的字符闪烁显式
-\033[7m设置反显效果，即把背景色和字体颜色反过来显示
-</code></pre>
+<p>将<code>cat</code>打印的值复制到<code>settings&gt;SSH and GPG keys&gt;New SSh key&gt;</code></p>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5">生成密钥</a></li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -161,9 +123,9 @@ some things you want to print out.表示要输出的字符，和<code>3xm</code>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://xdsun777.github.io/note/post/deepin-linux-bian-yi-php74/">
+            <a href="https://xdsun777.github.io/note/post/fu-wu-qi-bu-shu-djangovue-qian-hou-duan-fen-chi-xiang-mu/">
               <h3 class="post-title">
-                Deepin Linux编译php7.4
+                云服务器部署Django+Vue前后端分离项目
               </h3>
             </a>
           </div>

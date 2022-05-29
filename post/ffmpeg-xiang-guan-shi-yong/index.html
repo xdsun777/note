@@ -2,18 +2,25 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Linux echo | xdsun777</title>
+<title>ffmpeg相关使用 | xdsun777</title>
 <link rel="shortcut icon" href="https://xdsun777.github.io/note/favicon.ico?v=1653815790897">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://xdsun777.github.io/note/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Linux echo | xdsun777 - Atom Feed" href="https://xdsun777.github.io/note/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="ffmpeg相关使用 | xdsun777 - Atom Feed" href="https://xdsun777.github.io/note/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="echo指令用于在Unix Like类的系统中输出指定的字符，可以通过特定的方式给输出的字符定义颜色及背景颜色。 默认情况下echo会输出灰色（白色）字符，背景为黑色。
-echo -e &quot;\033[x;y;zm...\033[0m..." />
-    <meta name="keywords" content="Linux" />
+    <meta name="description" content="
+ffmpeg是用来记录、转换数字音频、视频，并能将其转化为流的开源软件。
+
+视频相关
+flv转mp4
+ffmpeg -i j.flv -c copy j.mp4
+
+模糊视频水印
+ffmpeg -i ./1.mp4 -filter_comp..." />
+    <meta name="keywords" content="ffmpeg" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -75,84 +82,87 @@ echo -e &quot;\033[x;y;zm...\033[0m..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Linux echo
+              ffmpeg相关使用
             </h2>
             <div class="post-info">
               <span>
-                2022-05-25
+                2022-05-27
               </span>
               <span>
-                3 min read
+                2 min read
               </span>
               
-                <a href="https://xdsun777.github.io/note/tag/k7YV0oD5N/" class="post-tag">
-                  # Linux
+                <a href="https://xdsun777.github.io/note/tag/9MZbNjP9g/" class="post-tag">
+                  # ffmpeg
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>echo指令用于在Unix Like类的系统中输出指定的字符，可以通过特定的方式给输出的字符定义颜色及背景颜色。 默认情况下echo会输出灰色（白色）字符，背景为黑色。</p>
-<pre><code>echo -e &quot;\033[x;y;zm...\033[0m&quot;
-x代表字符格式（0-7）
-0：最普通的，默认
-1：加高亮
-2：加深
-3：斜体
-4：下划线
-5：闪烁
-6：闪烁
-7：颜色反转
+                <blockquote>
+<p>ffmpeg是用来记录、转换数字音频、视频，并能将其转化为流的开源软件。</p>
+</blockquote>
+<h1 id="视频相关">视频相关</h1>
+<h2 id="flv转mp4">flv转mp4</h2>
+<pre><code>ffmpeg -i j.flv -c copy j.mp4
+</code></pre>
+<h2 id="模糊视频水印">模糊视频水印</h2>
+<pre><code>ffmpeg -i ./1.mp4 -filter_complex &quot;delogo=x=30:y=210:w=500:h=140:&quot; 4.mp4
+</code></pre>
+<h2 id="合并mp4格式视频">合并mp4格式视频</h2>
+<pre><code>ffmpeg -i ./4.mp4 -vcodec copy -acodec copy -vbsf h264_mp4toannexb 1.ts
+ffmpeg -i ./5.mp4 -vcodec copy -acodec copy -vbsf h264_mp4toannexb 2.ts
 
-y代表字符颜色
+ffmpeg -i &quot;concat:1.ts|2.ts&quot; -acodec copy -vcodec copy -absf aac_adtstoasc output.mp4
 </code></pre>
-<ol>
-<li>给输出的字符指定颜色<br>
-借助echo的-e选项来实现，语法格式为：</li>
-</ol>
-<p><code>echo -e &quot;\033[3xmsome things you want to print out.\033[0m&quot;</code></p>
-<p><code>\033[3xm</code>为ANSI控制码，表示要开始输出有颜色的字符了。<br>
-some things you want to print out.表示要输出的字符，和<code>3xm</code>紧挨着，如果中间有空格，输出的字符前面也会有空格。<br>
-3x为表示颜色的一组数字，x取值为0到7，分别代表的颜色如下：</p>
-<pre><code>30表示黑色。
-31表示红色。
-32表示绿色。
-33表示黄色。
-34表示蓝色。
-35表示紫色。
-36表示浅蓝色。
-37表示灰色。
-033[0m为ANSI控制码，表示结束输出有颜色的字符。
+<h2 id="截取视频">截取视频</h2>
+<pre><code>-ss 起始位置
+-t 结束位置
+
+ffmpeg -ss 00:00:03 -t 00:02:30 -i ./1.mp4 -vcodec copy -acodec copy out.mp4
 </code></pre>
-<ol start="2">
-<li>给输出的字符指定背景颜色<br>
-同样借助echo的-e选项来实现，语法格式为：</li>
-</ol>
-<p><code>echo -e &quot;\033[4xsome things you want to print out.\033[0m&quot;</code></p>
-<p><code>\033</code>开头的都为ANSI控制码，和指定字符的颜色不同的是，这里用的是<code>4x</code>，常用的背景颜色也共8种，x取值为0到7。常用背景色如下：</p>
-<pre><code>40表示背景为黑色。
-41表示背景为红色。
-42表示背景为绿色。
-43表示背景为黄色。
-44表示背景为蓝色。
-45表示背景为紫色。
-46表示背景为浅蓝色。
-47表示背景为灰白色。
+<h1 id="图片相关">图片相关</h1>
+<h2 id="转换图片格式">转换图片格式</h2>
+<pre><code>ffmpeg -i 初始文件 输出文件
 </code></pre>
-<ol start="3">
-<li>其它常用的ANSI控制码</li>
-</ol>
-<pre><code>\033[1m让输出的字符高亮显式
-\033[3m输出斜体字
-\033[4m给输出的字符加上下划线
-\033[5m让输出的字符闪烁显式
-\033[7m设置反显效果，即把背景色和字体颜色反过来显示
+<h2 id="压缩图片">压缩图片</h2>
+<pre><code>ffmpeg -i image_source -q compress_level out_source
+#compress_level：压缩等级为正整数，数值越大压缩等级越高
+</code></pre>
+<h2 id="图片合成视频">图片合成视频</h2>
+<pre><code>ffmpeg -i ./convert/mn3_%6d.png -c:v libx264 -vf &quot;fps=25,format=yuv420p&quot; out3.mp4
+</code></pre>
+<h1 id="音频相关">音频相关</h1>
+<h2 id="mp3转换成wav">mp3转换成wav</h2>
+<pre><code>ffmpeg -i input.mp3 -acodec pcm_u8 -ar 22050 out.wav
 </code></pre>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li><a href="#%E8%A7%86%E9%A2%91%E7%9B%B8%E5%85%B3">视频相关</a>
+<ul>
+<li><a href="#flv%E8%BD%ACmp4">flv转mp4</a></li>
+<li><a href="#%E6%A8%A1%E7%B3%8A%E8%A7%86%E9%A2%91%E6%B0%B4%E5%8D%B0">模糊视频水印</a></li>
+<li><a href="#%E5%90%88%E5%B9%B6mp4%E6%A0%BC%E5%BC%8F%E8%A7%86%E9%A2%91">合并mp4格式视频</a></li>
+<li><a href="#%E6%88%AA%E5%8F%96%E8%A7%86%E9%A2%91">截取视频</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%89%87%E7%9B%B8%E5%85%B3">图片相关</a>
+<ul>
+<li><a href="#%E8%BD%AC%E6%8D%A2%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F">转换图片格式</a></li>
+<li><a href="#%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87">压缩图片</a></li>
+<li><a href="#%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E8%A7%86%E9%A2%91">图片合成视频</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9F%B3%E9%A2%91%E7%9B%B8%E5%85%B3">音频相关</a>
+<ul>
+<li><a href="#mp3%E8%BD%AC%E6%8D%A2%E6%88%90wav">mp3转换成wav</a></li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -161,9 +171,9 @@ some things you want to print out.表示要输出的字符，和<code>3xm</code>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://xdsun777.github.io/note/post/deepin-linux-bian-yi-php74/">
+            <a href="https://xdsun777.github.io/note/post/deepin-linux-xian-qia-qie-huan/">
               <h3 class="post-title">
-                Deepin Linux编译php7.4
+                Deepin Linux显卡设置
               </h3>
             </a>
           </div>

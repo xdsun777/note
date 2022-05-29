@@ -1,0 +1,349 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>云服务器部署Django+Vue前后端分离项目 | xdsun777</title>
+<link rel="shortcut icon" href="https://xdsun777.github.io/note/favicon.ico?v=1653815790897">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xdsun777.github.io/note/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="云服务器部署Django+Vue前后端分离项目 | xdsun777 - Atom Feed" href="https://xdsun777.github.io/note/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="介绍
+没错就是后端Django，前端vue的项目，整个软件架构即是LUNPS(linux+uwsgi+nginx+python3+sqlite)，自创的架构名，hhh。
+考虑到项目小且为了方便，所以数据库只是用到了sqlite，mysql需..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xdsun777.github.io/note">
+  <img class="avatar" src="https://xdsun777.github.io/note/images/avatar.png?v=1653815790897" alt="">
+  </a>
+  <h1 class="site-title">
+    xdsun777
+  </h1>
+  <p class="site-description">
+    技术笔记
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              云服务器部署Django+Vue前后端分离项目
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-05-27
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="介绍">介绍</h2>
+<p>没错就是后端Django，前端vue的项目，整个软件架构即是LUNPS(linux+uwsgi+nginx+python3+sqlite)，自创的架构名，hhh。<br>
+考虑到项目小且为了方便，所以数据库只是用到了sqlite，mysql需要的话也只需简单配置。</p>
+<h2 id="准备">准备</h2>
+<ul>
+<li>一台腾讯云服务器，假设公网ip为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="green"><mn>139.180.155.48</mn></mstyle></mrow><annotation encoding="application/x-tex">\color{green}{139.180.155.48}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord" style="color:green;"><span class="mord" style="color:green;">1</span><span class="mord" style="color:green;">3</span><span class="mord" style="color:green;">9</span><span class="mord" style="color:green;">.</span><span class="mord" style="color:green;">1</span><span class="mord" style="color:green;">8</span><span class="mord" style="color:green;">0</span><span class="mord" style="color:green;">.</span><span class="mord" style="color:green;">1</span><span class="mord" style="color:green;">5</span><span class="mord" style="color:green;">5</span><span class="mord" style="color:green;">.</span><span class="mord" style="color:green;">4</span><span class="mord" style="color:green;">8</span></span></span></span></span>，内网ip为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="green"><mn>172.17.0.6</mn></mstyle></mrow><annotation encoding="application/x-tex">\color{green}{172.17.0.6}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord" style="color:green;"><span class="mord" style="color:green;">1</span><span class="mord" style="color:green;">7</span><span class="mord" style="color:green;">2</span><span class="mord" style="color:green;">.</span><span class="mord" style="color:green;">1</span><span class="mord" style="color:green;">7</span><span class="mord" style="color:green;">.</span><span class="mord" style="color:green;">0</span><span class="mord" style="color:green;">.</span><span class="mord" style="color:green;">6</span></span></span></span></span></li>
+<li>备案域名<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="green"><mrow><mi>w</mi><mi>w</mi><mi>w</mi><mi mathvariant="normal">.</mi><mi>u</mi><mi>j</mi><mi>f</mi><mi>d</mi><mi>o</mi><mi>l</mi><mi>u</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>n</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">\color{green}{www.ujfdolu.cn}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord" style="color:green;"><span class="mord mathdefault" style="margin-right:0.02691em;color:green;">w</span><span class="mord mathdefault" style="margin-right:0.02691em;color:green;">w</span><span class="mord mathdefault" style="margin-right:0.02691em;color:green;">w</span><span class="mord" style="color:green;">.</span><span class="mord mathdefault" style="color:green;">u</span><span class="mord mathdefault" style="margin-right:0.05724em;color:green;">j</span><span class="mord mathdefault" style="margin-right:0.10764em;color:green;">f</span><span class="mord mathdefault" style="color:green;">d</span><span class="mord mathdefault" style="color:green;">o</span><span class="mord mathdefault" style="margin-right:0.01968em;color:green;">l</span><span class="mord mathdefault" style="color:green;">u</span><span class="mord" style="color:green;">.</span><span class="mord mathdefault" style="color:green;">c</span><span class="mord mathdefault" style="color:green;">n</span></span></span></span></span></li>
+<li>前后端代码</li>
+<li>域名解析至云服务器</li>
+</ul>
+<h2 id="依赖安装">依赖安装</h2>
+<pre><code class="language-shell">pip3 install django
+pip3 install uwsgi
+apt install nginx
+</code></pre>
+<h2 id="测试">测试</h2>
+<p>公网ip是否能正常访问</p>
+<h4 id="编写testpy">编写<code>test.py</code></h4>
+<pre><code class="language-python">#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
+def application(env, start_response):
+    start_response('200 OK', [('Content-Type','text/html')])
+    return [b'Hello World']
+</code></pre>
+<h4 id="开始测试">开始测试</h4>
+<pre><code class="language-shell">uwsgi --http :8000 --wsgi-file test.py
+</code></pre>
+<p>假如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="yellow"><mrow><mn>139.180.155.48</mn><mo>:</mo><mn>8000</mn></mrow></mstyle></mrow><annotation encoding="application/x-tex">\color{yellow}{139.180.155.48:8000}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord" style="color:yellow;"><span class="mord" style="color:yellow;">1</span><span class="mord" style="color:yellow;">3</span><span class="mord" style="color:yellow;">9</span><span class="mord" style="color:yellow;">.</span><span class="mord" style="color:yellow;">1</span><span class="mord" style="color:yellow;">8</span><span class="mord" style="color:yellow;">0</span><span class="mord" style="color:yellow;">.</span><span class="mord" style="color:yellow;">1</span><span class="mord" style="color:yellow;">5</span><span class="mord" style="color:yellow;">5</span><span class="mord" style="color:yellow;">.</span><span class="mord" style="color:yellow;">4</span><span class="mord" style="color:yellow;">8</span><span class="mspace" style="color:yellow;margin-right:0.2777777777777778em;"></span><span class="mrel" style="color:yellow;">:</span><span class="mspace" style="color:yellow;margin-right:0.2777777777777778em;"></span><span class="mord" style="color:yellow;">8</span><span class="mord" style="color:yellow;">0</span><span class="mord" style="color:yellow;">0</span><span class="mord" style="color:yellow;">0</span></span></span></span></span>能够正常访问到<code>Hello World</code>，即表示能够正常访问。<br>
+<img src="https://xdsun777.github.io/note/post-images/1653653836175.png" alt="" loading="lazy"></p>
+<h2 id="项目配置">项目配置</h2>
+<p>将项目部署在<code>/www/wwwroot</code>下<br>
+<img src="https://xdsun777.github.io/note/post-images/1653654681209.png" alt="" loading="lazy"></p>
+<h4 id="log目录">log目录</h4>
+<p>日志及配置文件夹</p>
+<pre><code class="language-shell">tree log
+log
+├── uwsgi.ini
+├── uwsgi.service
+├── www.conf
+└── wwwstatic.conf
+</code></pre>
+<h5 id="uwsgiini为uwsgi的配置文件"><code>uwsgi.ini</code>为uwsgi的配置文件</h5>
+<pre><code>[uwsgi]
+# 启动uwsgi的用户名和用户组
+uid=root
+gid=root
+# 启用主进程
+master=true
+# 项目目录
+chdir=/www/wwwroot/www
+# 指定项目的application
+module=www.wsgi:application
+# 指定sock的文件路径
+socket=/www/wwwroot/log/uwsgi.sock
+# 进程数
+processes=4
+# 线程数
+thread=2
+pidfile=/www/wwwroot/log/uwsgi.pid
+# 指定IP端口 云服务器需要改成 0.0.0.0
+http=0.0.0.0:8082
+# 自动移除unix Socket和pid文件当服务停止的时候
+vacuum=true
+# 序列化接受的内容，如果可能的话
+thunder-lock=true
+# 启用线程
+enable-threads=true
+# 设置自中断时间
+harakiri=30
+# 设置缓冲
+post-buffering=4096
+# 设置日志目录
+daemonize=/www/wwwroot/log/uwsgi.log
+</code></pre>
+<h5 id="uwsgiservice为uwsgi服务配置文件"><code>uwsgi.service</code>为uwsgi服务配置文件</h5>
+<p>将其移至<code>/etc/systemd/system</code>。使用<code>sudo systemctl daemon-reload</code>冲加载守护进程，<code>systemctl list-dependencies multi-user.target</code>打印<code>multi-user.target</code>组下的服务<br>
+<img src="https://xdsun777.github.io/note/post-images/1653792893016.png" alt="" loading="lazy"><br>
+<code>systemctl enable uwsgi</code>开启开机自启动</p>
+<pre><code>[Unit]
+Description=www project uwsgi
+After=syslog.target
+
+[Service]
+ExecStart=/usr/local/bin/uwsgi --ini /www/wwwroot/log/uwsgi.ini
+ExecReload=/usr/local/bin/uwsgi --ini /www/wwwroot/log/uwsgi.ini
+ExecStop=/usr/local/bin/uwsgi --stop /www/wwwroot/log/uwsgi.pid
+KillSignal=SIGINT
+PIDFile=/www/wwwroot/log/uwsgi.pid
+
+Restart=always
+Type=forking
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<h5 id="wwwconfig-wwwstatusconfig是nginx的配置文件用于反向代理后端接口和静态资源的访问">www.config、wwwstatus.config是nginx的配置文件用于反向代理后端接口和静态资源的访问</h5>
+<p>将配置文件移至<code>/etc/nginx/nginx.d/</code>目录下，使用<code>nginx -t</code>检验配置是否正确服务能否正常启动。<br>
+<img src="https://xdsun777.github.io/note/post-images/1653793494141.png" alt="" loading="lazy"></p>
+<pre><code># www.config
+
+server{
+	listen	8081;
+	server_name	172.17.0.6;
+	access_log	/www/wwwroot/log/access.log;
+	error_log	/www/wwwroot/log/error.log;
+	charset	utf-8;
+	error_page 404 /404.html;
+	error_page 505 502 503 504 /50x.html;
+
+	location / {
+
+		include	uwsgi_params;
+		uwsgi_connect_timeout	30;
+		uwsgi_pass unix:/www/wwwroot/log/uwsgi.sock;
+	}
+}
+
+
+# wwwstatus.config
+server  {
+    listen  80;
+    server_name www.ujfdolu.cn;
+    
+    location / {
+        root    /www/wwwroot/dist/;
+        try_files   $uri $uri/ /index.html;
+    }
+    
+    location /api {
+        proxy_pass http://172.17.0.6:8081/api/;
+    }
+    location /site {
+        proxy_pass http://172.17.0.6:8081/site/;
+    }
+}
+</code></pre>
+<h4 id="dist目录">dist目录</h4>
+<p>编译后的前端项目<br>
+<img src="https://xdsun777.github.io/note/post-images/1653714193754.png" alt="" loading="lazy"></p>
+<h4 id="www目录">www目录</h4>
+<p>后端Django项目<br>
+<img src="https://xdsun777.github.io/note/post-images/1653714249432.png" alt="" loading="lazy"></p>
+<h5 id="requirementstxt文件包含了python的依赖包">requirements.txt文件包含了python的依赖包</h5>
+<p>安装依赖</p>
+<pre><code class="language-shell">python3 -m pip install -r requirements.txt
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a></li>
+<li><a href="#%E5%87%86%E5%A4%87">准备</a></li>
+<li><a href="#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85">依赖安装</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95">测试</a><br>
+*
+<ul>
+<li><a href="#%E7%BC%96%E5%86%99testpy">编写<code>test.py</code></a></li>
+<li><a href="#%E5%BC%80%E5%A7%8B%E6%B5%8B%E8%AF%95">开始测试</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE">项目配置</a><br>
+*
+<ul>
+<li><a href="#log%E7%9B%AE%E5%BD%95">log目录</a>
+<ul>
+<li><a href="#uwsgiini%E4%B8%BAuwsgi%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><code>uwsgi.ini</code>为uwsgi的配置文件</a></li>
+<li><a href="#uwsgiservice%E4%B8%BAuwsgi%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><code>uwsgi.service</code>为uwsgi服务配置文件</a></li>
+<li><a href="#wwwconfig-wwwstatusconfig%E6%98%AFnginx%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%94%A8%E4%BA%8E%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E5%92%8C%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E7%9A%84%E8%AE%BF%E9%97%AE">www.config、wwwstatus.config是nginx的配置文件用于反向代理后端接口和静态资源的访问</a></li>
+</ul>
+</li>
+<li><a href="#dist%E7%9B%AE%E5%BD%95">dist目录</a></li>
+<li><a href="#www%E7%9B%AE%E5%BD%95">www目录</a>
+<ul>
+<li><a href="#requirementstxt%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E4%BA%86python%E7%9A%84%E4%BE%9D%E8%B5%96%E5%8C%85">requirements.txt文件包含了python的依赖包</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xdsun777.github.io/note/post/faceswap-an-zhuang-jiao-ben/">
+              <h3 class="post-title">
+                faceswap安装脚本
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  <a/ target="_blank" href="https://github.com/xdsun777">github</a>
+  <a class="rss" href="https://xdsun777.github.io/note/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

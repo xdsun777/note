@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xdsun777.github.io/note</id>
     <title>xdsun777</title>
-    <updated>2022-05-27T05:57:51.961Z</updated>
+    <updated>2022-05-29T09:16:34.428Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xdsun777.github.io/note"/>
     <link rel="self" href="https://xdsun777.github.io/note/atom.xml"/>
@@ -11,7 +11,35 @@
     <icon>https://xdsun777.github.io/note/favicon.ico</icon>
     <rights>All rights reserved 2022, xdsun777</rights>
     <entry>
-        <title type="html"><![CDATA[Deepin Linux显卡切换]]></title>
+        <title type="html"><![CDATA[github ssh免密与token登录配置]]></title>
+        <id>https://xdsun777.github.io/note/post/github-ssh-mian-mi-yu-token-deng-lu-pei-zhi/</id>
+        <link href="https://xdsun777.github.io/note/post/github-ssh-mian-mi-yu-token-deng-lu-pei-zhi/">
+        </link>
+        <updated>2022-05-29T08:39:05.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[云服务器部署Django+Vue前后端分离项目]]></title>
+        <id>https://xdsun777.github.io/note/post/fu-wu-qi-bu-shu-djangovue-qian-hou-duan-fen-chi-xiang-mu/</id>
+        <link href="https://xdsun777.github.io/note/post/fu-wu-qi-bu-shu-djangovue-qian-hou-duan-fen-chi-xiang-mu/">
+        </link>
+        <updated>2022-05-27T11:54:45.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[faceswap安装脚本]]></title>
+        <id>https://xdsun777.github.io/note/post/faceswap-an-zhuang-jiao-ben/</id>
+        <link href="https://xdsun777.github.io/note/post/faceswap-an-zhuang-jiao-ben/">
+        </link>
+        <updated>2022-05-27T11:40:32.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ffmpeg相关使用]]></title>
+        <id>https://xdsun777.github.io/note/post/ffmpeg-xiang-guan-shi-yong/</id>
+        <link href="https://xdsun777.github.io/note/post/ffmpeg-xiang-guan-shi-yong/">
+        </link>
+        <updated>2022-05-27T11:25:44.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Deepin Linux显卡设置]]></title>
         <id>https://xdsun777.github.io/note/post/deepin-linux-xian-qia-qie-huan/</id>
         <link href="https://xdsun777.github.io/note/post/deepin-linux-xian-qia-qie-huan/">
         </link>
