@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://xdsun777.github.io</id>
+    <id>https://xdsun777.github.io/note</id>
     <title>xdsun777</title>
-    <updated>2022-05-31T03:07:29.234Z</updated>
+    <updated>2022-05-31T03:10:23.923Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://xdsun777.github.io"/>
-    <link rel="self" href="https://xdsun777.github.io/atom.xml"/>
+    <link rel="alternate" href="https://xdsun777.github.io/note"/>
+    <link rel="self" href="https://xdsun777.github.io/note/atom.xml"/>
     <subtitle>技术笔记</subtitle>
-    <logo>https://xdsun777.github.io/images/avatar.png</logo>
-    <icon>https://xdsun777.github.io/favicon.ico</icon>
+    <logo>https://xdsun777.github.io/note/images/avatar.png</logo>
+    <icon>https://xdsun777.github.io/note/favicon.ico</icon>
     <rights>All rights reserved 2022, xdsun777</rights>
     <entry>
         <title type="html"><![CDATA[github ssh免密与token登录配置]]></title>
-        <id>https://xdsun777.github.io/post/github-ssh-mian-mi-yu-token-deng-lu-pei-zhi/</id>
-        <link href="https://xdsun777.github.io/post/github-ssh-mian-mi-yu-token-deng-lu-pei-zhi/">
+        <id>https://xdsun777.github.io/note/post/github-ssh-mian-mi-yu-token-deng-lu-pei-zhi/</id>
+        <link href="https://xdsun777.github.io/note/post/github-ssh-mian-mi-yu-token-deng-lu-pei-zhi/">
         </link>
         <updated>2022-05-29T08:39:05.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[云服务器部署Django+Vue前后端分离项目]]></title>
-        <id>https://xdsun777.github.io/post/fu-wu-qi-bu-shu-djangovue-qian-hou-duan-fen-chi-xiang-mu/</id>
-        <link href="https://xdsun777.github.io/post/fu-wu-qi-bu-shu-djangovue-qian-hou-duan-fen-chi-xiang-mu/">
+        <id>https://xdsun777.github.io/note/post/fu-wu-qi-bu-shu-djangovue-qian-hou-duan-fen-chi-xiang-mu/</id>
+        <link href="https://xdsun777.github.io/note/post/fu-wu-qi-bu-shu-djangovue-qian-hou-duan-fen-chi-xiang-mu/">
         </link>
         <updated>2022-05-27T11:54:45.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[faceswap安装脚本]]></title>
-        <id>https://xdsun777.github.io/post/faceswap-an-zhuang-jiao-ben/</id>
-        <link href="https://xdsun777.github.io/post/faceswap-an-zhuang-jiao-ben/">
+        <id>https://xdsun777.github.io/note/post/faceswap-an-zhuang-jiao-ben/</id>
+        <link href="https://xdsun777.github.io/note/post/faceswap-an-zhuang-jiao-ben/">
         </link>
         <updated>2022-05-27T11:40:32.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[ffmpeg相关使用]]></title>
-        <id>https://xdsun777.github.io/post/ffmpeg-xiang-guan-shi-yong/</id>
-        <link href="https://xdsun777.github.io/post/ffmpeg-xiang-guan-shi-yong/">
+        <id>https://xdsun777.github.io/note/post/ffmpeg-xiang-guan-shi-yong/</id>
+        <link href="https://xdsun777.github.io/note/post/ffmpeg-xiang-guan-shi-yong/">
         </link>
         <updated>2022-05-27T11:25:44.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Deepin Linux显卡设置]]></title>
-        <id>https://xdsun777.github.io/post/deepin-linux-xian-qia-qie-huan/</id>
-        <link href="https://xdsun777.github.io/post/deepin-linux-xian-qia-qie-huan/">
+        <id>https://xdsun777.github.io/note/post/deepin-linux-xian-qia-qie-huan/</id>
+        <link href="https://xdsun777.github.io/note/post/deepin-linux-xian-qia-qie-huan/">
         </link>
         <updated>2022-05-25T12:32:19.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Linux echo]]></title>
-        <id>https://xdsun777.github.io/post/linux-echo/</id>
-        <link href="https://xdsun777.github.io/post/linux-echo/">
+        <id>https://xdsun777.github.io/note/post/linux-echo/</id>
+        <link href="https://xdsun777.github.io/note/post/linux-echo/">
         </link>
         <updated>2022-05-25T12:23:39.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Deepin Linux编译php7.4]]></title>
-        <id>https://xdsun777.github.io/post/deepin-linux-bian-yi-php74/</id>
-        <link href="https://xdsun777.github.io/post/deepin-linux-bian-yi-php74/">
+        <id>https://xdsun777.github.io/note/post/deepin-linux-bian-yi-php74/</id>
+        <link href="https://xdsun777.github.io/note/post/deepin-linux-bian-yi-php74/">
         </link>
         <updated>2022-05-25T03:40:48.000Z</updated>
     </entry>

@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>云服务器部署Django+Vue前后端分离项目 | xdsun777</title>
-<link rel="shortcut icon" href="https://xdsun777.github.io/favicon.ico?v=1653966445431">
+<link rel="shortcut icon" href="https://xdsun777.github.io/note/favicon.ico?v=1653966617547">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://xdsun777.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="云服务器部署Django+Vue前后端分离项目 | xdsun777 - Atom Feed" href="https://xdsun777.github.io/atom.xml">
+<link rel="stylesheet" href="https://xdsun777.github.io/note/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="云服务器部署Django+Vue前后端分离项目 | xdsun777 - Atom Feed" href="https://xdsun777.github.io/note/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -22,8 +22,8 @@
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://xdsun777.github.io">
-  <img class="avatar" src="https://xdsun777.github.io/images/avatar.png?v=1653966445431" alt="">
+  <a href="https://xdsun777.github.io/note">
+  <img class="avatar" src="https://xdsun777.github.io/note/images/avatar.png?v=1653966617547" alt="">
   </a>
   <h1 class="site-title">
     xdsun777
@@ -123,10 +123,10 @@ def application(env, start_response):
 <pre><code class="language-shell">uwsgi --http :8000 --wsgi-file test.py
 </code></pre>
 <p>假如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="yellow"><mrow><mn>139.180.155.48</mn><mo>:</mo><mn>8000</mn></mrow></mstyle></mrow><annotation encoding="application/x-tex">\color{yellow}{139.180.155.48:8000}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord" style="color:yellow;"><span class="mord" style="color:yellow;">1</span><span class="mord" style="color:yellow;">3</span><span class="mord" style="color:yellow;">9</span><span class="mord" style="color:yellow;">.</span><span class="mord" style="color:yellow;">1</span><span class="mord" style="color:yellow;">8</span><span class="mord" style="color:yellow;">0</span><span class="mord" style="color:yellow;">.</span><span class="mord" style="color:yellow;">1</span><span class="mord" style="color:yellow;">5</span><span class="mord" style="color:yellow;">5</span><span class="mord" style="color:yellow;">.</span><span class="mord" style="color:yellow;">4</span><span class="mord" style="color:yellow;">8</span><span class="mspace" style="color:yellow;margin-right:0.2777777777777778em;"></span><span class="mrel" style="color:yellow;">:</span><span class="mspace" style="color:yellow;margin-right:0.2777777777777778em;"></span><span class="mord" style="color:yellow;">8</span><span class="mord" style="color:yellow;">0</span><span class="mord" style="color:yellow;">0</span><span class="mord" style="color:yellow;">0</span></span></span></span></span>能够正常访问到<code>Hello World</code>，即表示能够正常访问。<br>
-<img src="https://xdsun777.github.io/post-images/1653653836175.png" alt="" loading="lazy"></p>
+<img src="https://xdsun777.github.io/note/post-images/1653653836175.png" alt="" loading="lazy"></p>
 <h2 id="项目配置">项目配置</h2>
 <p>将项目部署在<code>/www/wwwroot</code>下<br>
-<img src="https://xdsun777.github.io/post-images/1653654681209.png" alt="" loading="lazy"></p>
+<img src="https://xdsun777.github.io/note/post-images/1653654681209.png" alt="" loading="lazy"></p>
 <h4 id="log目录">log目录</h4>
 <p>日志及配置文件夹</p>
 <pre><code class="language-shell">tree log
@@ -171,7 +171,7 @@ daemonize=/www/wwwroot/log/uwsgi.log
 </code></pre>
 <h5 id="uwsgiservice为uwsgi服务配置文件"><code>uwsgi.service</code>为uwsgi服务配置文件</h5>
 <p>将其移至<code>/etc/systemd/system</code>。使用<code>sudo systemctl daemon-reload</code>冲加载守护进程，<code>systemctl list-dependencies multi-user.target</code>打印<code>multi-user.target</code>组下的服务<br>
-<img src="https://xdsun777.github.io/post-images/1653792893016.png" alt="" loading="lazy"><br>
+<img src="https://xdsun777.github.io/note/post-images/1653792893016.png" alt="" loading="lazy"><br>
 <code>systemctl enable uwsgi</code>开启开机自启动</p>
 <pre><code>[Unit]
 Description=www project uwsgi
@@ -194,7 +194,7 @@ WantedBy=multi-user.target
 </code></pre>
 <h5 id="wwwconfig-wwwstatusconfig是nginx的配置文件用于反向代理后端接口和静态资源的访问">www.config、wwwstatus.config是nginx的配置文件用于反向代理后端接口和静态资源的访问</h5>
 <p>将配置文件移至<code>/etc/nginx/nginx.d/</code>目录下，使用<code>nginx -t</code>检验配置是否正确服务能否正常启动。<br>
-<img src="https://xdsun777.github.io/post-images/1653793494141.png" alt="" loading="lazy"></p>
+<img src="https://xdsun777.github.io/note/post-images/1653793494141.png" alt="" loading="lazy"></p>
 <pre><code># www.config
 
 server{
@@ -235,10 +235,10 @@ server  {
 </code></pre>
 <h4 id="dist目录">dist目录</h4>
 <p>编译后的前端项目<br>
-<img src="https://xdsun777.github.io/post-images/1653714193754.png" alt="" loading="lazy"></p>
+<img src="https://xdsun777.github.io/note/post-images/1653714193754.png" alt="" loading="lazy"></p>
 <h4 id="www目录">www目录</h4>
 <p>后端Django项目<br>
-<img src="https://xdsun777.github.io/post-images/1653714249432.png" alt="" loading="lazy"></p>
+<img src="https://xdsun777.github.io/note/post-images/1653714249432.png" alt="" loading="lazy"></p>
 <h5 id="requirementstxt文件包含了python的依赖包">requirements.txt文件包含了python的依赖包</h5>
 <p>安装依赖</p>
 <pre><code class="language-shell">python3 -m pip install -r requirements.txt
@@ -289,7 +289,7 @@ server  {
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://xdsun777.github.io/post/faceswap-an-zhuang-jiao-ben/">
+            <a href="https://xdsun777.github.io/note/post/faceswap-an-zhuang-jiao-ben/">
               <h3 class="post-title">
                 faceswap安装脚本
               </h3>
@@ -301,7 +301,7 @@ server  {
 
         <div class="site-footer">
   <a/ target="_blank" href="https://github.com/xdsun777">github</a>
-  <a class="rss" href="https://xdsun777.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://xdsun777.github.io/note/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>
